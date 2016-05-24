@@ -474,6 +474,8 @@ else
     export PUBLISH_PORT=$(get_port_numbers "${PORT}")
 fi
 
+export OPTIONAL_ARGS=" -e MFPF_CLUSTER_MODE=Farm "
+
 # if the user has not defined a Route then create one
 if [ -z "${ROUTE_HOSTNAME}" ]; then
     log_and_echo "ROUTE_HOSTNAME not set.  One will be generated.  ${label_color}ROUTE_HOSTNAME can be set as an environment property on the stage${no_color}"
