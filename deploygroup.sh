@@ -234,6 +234,8 @@ deploy_group() {
     if [ -z "$GROUP_WAIT_UNMAP_TIME" ]; then
         export GROUP_WAIT_UNMAP_TIME=180
     fi
+    
+    export OPTIONAL_ARGS=" -e MFPF_CLUSTER_MODE=Farm "
 
     # create the group and check the results
     log_and_echo "creating group: $IC_COMMAND group create --name ${MY_GROUP_NAME} ${BIND_PARMS} ${PUBLISH_PORT} ${MEMORY} ${OPTIONAL_ARGS} --desired ${DESIRED_INSTANCES} --min ${MIN_INSTANCES} --max ${MAX_INSTANCES} ${AUTO} ${IMAGE_NAME}"
@@ -474,7 +476,6 @@ else
     export PUBLISH_PORT=$(get_port_numbers "${PORT}")
 fi
 
-export OPTIONAL_ARGS=" -e MFPF_CLUSTER_MODE=Farm "
 
 # if the user has not defined a Route then create one
 if [ -z "${ROUTE_HOSTNAME}" ]; then
